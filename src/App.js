@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
 
-function App() {
+export default function App() {
+  const [user, setUser] = useState(null);
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
+  }
+
+  if (user.role === "Admin") {
+    return <AdminDashboard user={user} />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "40px" }}>
+      <h2>Welcome {user.username}</h2>
+      <p>Role: {user.role}</p>
+      <p>No dashboard assigned for this role yet.</p>
     </div>
   );
 }
-
-export default App;
