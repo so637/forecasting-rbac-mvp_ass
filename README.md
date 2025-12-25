@@ -172,4 +172,34 @@ Role	Username	Password
 Admin	admin	admin123
 Manager	manager	manager123
 User	user	user123
+
+Architecture Overview
+
+The application follows a simple layered architecture:
+
+- React frontend handles login, file upload, and displaying forecast data.
+- ASP.NET Core Web API handles business logic, RBAC validation, and workflows.
+- Entity Framework Core is used for database access with SQLite.
+- RBAC is enforced at the API layer, not the UI.
+
+Manager and User Capabilities (MVP Scope)
+
+- Managers can view forecast data and submit modified values in simulation mode.
+- Users can view assigned forecasts and submit commitment changes.
+- Forecast changes always create new records and never overwrite system data.
+- Approval workflows are implemented at the data and API level.
+- UI is intentionally minimal to focus on backend correctness and workflows.
+
+Deployment
+
+- The frontend is deployed using Netlify (Netlify Drop).
+- The React app is built using `npm run build`.
+- Client-side routing is handled via Netlify redirect configuration.
+- Backend API is designed to run independently and is not publicly hosted.
+- 
+deploy link:
+https://694d49f5efaca9ea6426c28c--sprightly-pika-438cd6.netlify.app/
+https://sprightly-pika-438cd6.netlify.app/
+
+
 >>>>>>> 01af2c569c0d22f95c0557f567dc79c761fc4c60
